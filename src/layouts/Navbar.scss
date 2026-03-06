@@ -1,0 +1,237 @@
+$nav-height: 70px;
+$color-bg: #ffffff;
+$color-bg-scrolled: rgba(255, 255, 255, 0.95);
+$color-primary: #1a6b3c;
+$color-accent: #f5a623;
+$color-text: #1a1a1a;
+$color-muted: #666;
+$transition: 0.3s ease;
+$mobile-bp: 768px;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;
+  transition:
+    background $transition,
+    box-shadow $transition;
+
+  &-scrolled {
+    background: $color-bg-scrolled;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  &-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: $nav-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  &-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: $color-text;
+
+    &-icon {
+      font-size: 1.4rem;
+    }
+
+    &-text {
+      font-size: 1.2rem;
+      letter-spacing: -0.3px;
+      color: $color-primary;
+
+      strong {
+        font-weight: 800;
+      }
+    }
+  }
+
+  &-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: $mobile-bp) {
+      display: none;
+    }
+  }
+
+  &-link {
+    text-decoration: none;
+    color: $color-muted;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    transition:
+      color $transition,
+      background $transition;
+
+    &:hover {
+      color: $color-primary;
+      background: rgba($color-primary, 0.07);
+    }
+
+    &-active {
+      color: $color-primary;
+      font-weight: 600;
+      background: rgba($color-primary, 0.1);
+    }
+  }
+
+  &-cta {
+    text-decoration: none;
+    background: $color-primary;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 999px;
+    transition:
+      background $transition,
+      transform $transition;
+    white-space: nowrap;
+
+    &:hover {
+      background: darken($color-primary, 8%);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: $mobile-bp) {
+      display: none;
+    }
+
+    &-mobile {
+      display: inline-block;
+      margin-top: 16px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    @media (max-width: $mobile-bp) {
+      display: flex;
+    }
+
+    span {
+      display: block;
+      height: 2px;
+      background: $color-text;
+      border-radius: 2px;
+      transition:
+        transform $transition,
+        opacity $transition,
+        width $transition;
+      transform-origin: center;
+
+      &:nth-child(1) {
+        width: 24px;
+      }
+      &:nth-child(2) {
+        width: 18px;
+      }
+      &:nth-child(3) {
+        width: 24px;
+      }
+    }
+
+    &-open span {
+      &:nth-child(1) {
+        width: 24px;
+        transform: translateY(7px) rotate(45deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      &:nth-child(3) {
+        width: 24px;
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
+  }
+
+  &-mobile {
+    display: none;
+    flex-direction: column;
+    padding: 16px 24px 24px;
+    background: $color-bg-scrolled;
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height 0.35s ease,
+      opacity 0.3s ease;
+
+    @media (max-width: $mobile-bp) {
+      display: flex;
+    }
+
+    &-open {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    &-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    &-link {
+      display: block;
+      text-decoration: none;
+      color: $color-muted;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition:
+        color $transition,
+        background $transition;
+
+      &:hover {
+        color: $color-primary;
+        background: rgba($color-primary, 0.07);
+      }
+
+      &-active {
+        color: $color-primary;
+        font-weight: 600;
+        background: rgba($color-primary, 0.1);
+      }
+    }
+  }
+}

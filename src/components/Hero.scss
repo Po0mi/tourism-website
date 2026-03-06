@@ -1,0 +1,32 @@
+:root {
+  --main-text: #ff9e00;
+  --bg-color: #0a0908;
+  --secondary-text: #f4f3ee;
+}
+
+.hero {
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: var(--bg-color);
+  border-bottom: solid 1px rgb(255, 255, 255, 0.3);
+
+  .hero-container {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0;
+    grid-auto-flow: row;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+}
