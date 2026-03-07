@@ -13,7 +13,7 @@ const MainLayout = ({ children }) => {
     <>
       <CustomCursor />
       <Navbar />
-      <main className="layout__main">{children}</main>
+      <main className="layout_main">{children}</main>
       <Footer />
     </>
   );
