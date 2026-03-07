@@ -1,10 +1,9 @@
 $nav-height: 70px;
-$color-bg: #ffffff;
-$color-bg-scrolled: rgba(255, 255, 255, 0.95);
-$color-primary: #1a6b3c;
-$color-accent: #f5a623;
-$color-text: #1a1a1a;
-$color-muted: #666;
+$color-bg: transparent;
+$color-bg-scrolled: rgba(10, 9, 8, 0.85);
+$color-primary: #ff9e00;
+$color-text: #f4f3ee;
+$color-muted: rgba(244, 243, 238, 0.45);
 $transition: 0.3s ease;
 $mobile-bp: 768px;
 
@@ -21,39 +20,51 @@ $mobile-bp: 768px;
 
   &-scrolled {
     background: $color-bg-scrolled;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgba(244, 243, 238, 0.06);
   }
 
   &-container {
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 40px;
     height: $nav-height;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 32px;
+
+    @media (max-width: $mobile-bp) {
+      padding: 0 20px;
+    }
   }
 
   &-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     text-decoration: none;
     color: $color-text;
 
     &-icon {
-      font-size: 1.4rem;
+      display: flex;
+
+      img {
+        width: 36px;
+        height: 36px;
+        opacity: 0.9;
+      }
     }
 
     &-text {
-      font-size: 1.2rem;
-      letter-spacing: -0.3px;
-      color: $color-primary;
+      font-family: "Theater", sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      color: $color-text;
 
       strong {
-        font-weight: 800;
+        color: $color-primary;
+        font-weight: 700;
       }
     }
   }
@@ -61,7 +72,7 @@ $mobile-bp: 768px;
   &-links {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 9px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -74,41 +85,44 @@ $mobile-bp: 768px;
   &-link {
     text-decoration: none;
     color: $color-muted;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     padding: 6px 14px;
-    border-radius: 999px;
+    border-radius: 4px;
     transition:
       color $transition,
       background $transition;
 
     &:hover {
-      color: $color-primary;
-      background: rgba($color-primary, 0.07);
+      color: $color-text;
+      background: rgba(244, 243, 238, 0.06);
     }
 
     &-active {
       color: $color-primary;
-      font-weight: 600;
-      background: rgba($color-primary, 0.1);
+      background: rgba(255, 158, 0, 0.08);
     }
   }
 
   &-cta {
     text-decoration: none;
     background: $color-primary;
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 600;
+    color: #0a0908;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     padding: 9px 20px;
-    border-radius: 999px;
+    border-radius: 4px;
     transition:
-      background $transition,
+      opacity $transition,
       transform $transition;
     white-space: nowrap;
 
     &:hover {
-      background: darken($color-primary, 8%);
+      opacity: 0.85;
       transform: translateY(-1px);
     }
 
@@ -121,6 +135,7 @@ $mobile-bp: 768px;
       margin-top: 16px;
       width: 100%;
       text-align: center;
+      border-radius: 4px;
     }
   }
 
@@ -182,9 +197,9 @@ $mobile-bp: 768px;
     display: none;
     flex-direction: column;
     padding: 16px 24px 24px;
-    background: $color-bg-scrolled;
-    backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(10, 9, 8, 0.97);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(244, 243, 238, 0.06);
     max-height: 0;
     overflow: hidden;
     opacity: 0;
@@ -214,23 +229,24 @@ $mobile-bp: 768px;
       display: block;
       text-decoration: none;
       color: $color-muted;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       padding: 10px 14px;
-      border-radius: 10px;
+      border-radius: 4px;
       transition:
         color $transition,
         background $transition;
 
       &:hover {
-        color: $color-primary;
-        background: rgba($color-primary, 0.07);
+        color: $color-text;
+        background: rgba(244, 243, 238, 0.05);
       }
 
       &-active {
         color: $color-primary;
-        font-weight: 600;
-        background: rgba($color-primary, 0.1);
+        background: rgba(255, 158, 0, 0.08);
       }
     }
   }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useActiveNav from "../hooks/useActiveNav";
+import Logo from "../assets/logo/ph-logo.svg";
 import "./Navbar.scss";
 
 const navLinks = [
@@ -37,7 +38,9 @@ const Navbar = () => {
       <div className="nav-container">
         {/* Logo */}
         <Link to="/" className="nav-logo" onClick={closeMenu}>
-          <span className="nav-logo-icon">🇵🇭</span>
+          <span className="nav-logo-icon">
+            <img src={Logo} alt="ph-logo" />
+          </span>
           <span className="nav-logo-text">
             Pinas<strong>Guide</strong>
           </span>
@@ -55,12 +58,11 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+          {/* CTA */}
+          <Link to="/destinations" className="nav-cta">
+            Explore Now
+          </Link>
         </ul>
-
-        {/* CTA */}
-        <Link to="/destinations" className="nav-cta">
-          Explore Now
-        </Link>
 
         {/* Hamburger */}
         <button
