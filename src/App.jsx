@@ -2,9 +2,9 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/Mainlayout";
 import Home from "./pages/Home";
-import DestinationsPage from "./pages/DestinationsPage";
-import RegionsPage from "./pages/RegionsPage";
-import AboutPage from "./pages/AboutPage";
+import DestinationsPage from "./pages/Destinationspage";
+import RegionsPage from "./pages/Regionpage";
+import AboutPage from "./pages/Aboutpage";
 import Loader from "./components/Loader";
 import "./App.css";
 
