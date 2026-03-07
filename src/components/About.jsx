@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import useAboutAnimation from "../hooks/Useaboutanimation";
 import "./About.scss";
 
 const stats = [
@@ -25,8 +27,11 @@ const stats = [
 ];
 
 const About = () => {
+  const sectionRef = useRef(null);
+  useAboutAnimation(sectionRef);
+
   return (
-    <section className="about" id="about">
+    <section className="about" id="about" ref={sectionRef}>
       <div className="about-inner">
         {/* ── Top Row ──────────────────────────── */}
         <div className="about-top">

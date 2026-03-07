@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import regions from "../data/regions";
+import useRegionsAnimation from "../hooks/useRegionsAnimation";
 import "./Regions.scss";
 
 const Regions = () => {
+  const sectionRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(null);
 
+  useRegionsAnimation(sectionRef);
+
   return (
-    <section className="regions" id="regions">
+    <section className="regions" id="regions" ref={sectionRef}>
       {/* ── Header ─────────────────────────────── */}
       <div className="regions-header">
         <div className="regions-label">

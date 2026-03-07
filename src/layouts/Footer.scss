@@ -193,3 +193,13 @@ $tablet-bp: 900px;
   color: rgba(244, 243, 238, 0.3);
   margin: 0;
 }
+
+.footer-made-link {
+  color: rgba(244, 243, 238, 0.5);
+  text-decoration: none;
+  transition: color $transition;
+
+  &:hover {
+    color: #ff9e00;
+  }
+}

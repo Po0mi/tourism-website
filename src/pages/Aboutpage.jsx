@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import useAboutPageAnimation from "../hooks/useAboutPageAnimation";
 import "./Aboutpage.scss";
 
 const stats = [
@@ -58,8 +60,11 @@ const mission = [
 ];
 
 const AboutPage = () => {
+  const pageRef = useRef(null);
+  useAboutPageAnimation(pageRef);
+
   return (
-    <div className="about-page">
+    <div className="about-page" ref={pageRef}>
       {/* ── Hero ─────────────────────────────── */}
       <section className="about-page-hero">
         <div className="about-page-hero-meta">

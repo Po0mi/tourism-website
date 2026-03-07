@@ -1,13 +1,18 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import destinations from "../data/destinations";
+import useDestinationsAnimation from "../hooks/useDestinationsAnimation";
 import "./Destinations.scss";
 
 const Destinations = () => {
+  const sectionRef = useRef(null);
+  useDestinationsAnimation(sectionRef);
+
   const featured = destinations.find((d) => d.featured);
   const rest = destinations.filter((d) => !d.featured);
 
   return (
-    <section className="destinations" id="destinations">
+    <section className="destinations" id="destinations" ref={sectionRef}>
       {/* ── Header ─────────────────────────────── */}
       <div className="destinations-header">
         <div className="destinations-header-left">

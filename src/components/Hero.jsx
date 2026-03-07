@@ -1,11 +1,17 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import heroBg from "../assets/bg/hero-bg.webm";
+import useHeroAnimation from "../hooks/useHeroAnimation";
 import "./Hero.scss";
 
 const Hero = () => {
+  const containerRef = useRef(null);
+
+  useHeroAnimation(containerRef);
+
   return (
     <section className="hero" id="home">
-      <div className="hero-container">
+      <div className="hero-container" ref={containerRef}>
         {/* Video Background */}
         <video autoPlay muted loop playsInline className="hero-video">
           <source src={heroBg} type="video/webm" />
@@ -16,7 +22,7 @@ const Hero = () => {
 
         {/* Top left — horizontal tag */}
         <div className="hero-tag-vertical">
-          <span>Experience the Beauty of the Philippines.</span>
+          <span>Experience the Beauty of the</span>
         </div>
 
         {/* Top right — issue tag */}
@@ -72,7 +78,9 @@ const Hero = () => {
           <div className="hero-stat-divider" />
           <div className="hero-stat">
             <strong>3</strong>
-            <span>Major Islands</span>
+            <span style={{ textAlign: "center", display: "block" }}>
+              Main Islands
+            </span>
           </div>
         </div>
       </div>

@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import regions from "../data/regions";
 import destinations from "../data/destinations";
+import {
+  useRegionsPageAnimation,
+  useRegionsPagePanelAnimation,
+} from "../hooks/useRegionsPageAnimation";
 import "./Regionspage.scss";
 
 const RegionsPage = () => {
+  const pageRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeRegion = regions[activeIndex];
@@ -12,8 +17,11 @@ const RegionsPage = () => {
     (d) => d.region.toLowerCase() === activeRegion.name.toLowerCase(),
   );
 
+  useRegionsPageAnimation(pageRef);
+  useRegionsPagePanelAnimation(activeIndex);
+
   return (
-    <div className="regions-page">
+    <div className="regions-page" ref={pageRef}>
       {/* ── Header ───────────────────────────── */}
       <div className="regions-page-header">
         <div className="regions-page-header-label">

@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import useActiveNav from "../hooks/useActiveNav";
+import useNavbarAnimation from "../hooks/useNavbarAnimation";
+import useNavbarMobileAnimation from "../hooks/UsenavbarMobileAnimation";
 import Logo from "../assets/logo/ph-logo.svg";
 import "./Navbar.scss";
 
@@ -15,6 +17,12 @@ const Navbar = () => {
   const { isActive } = useActiveNav();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const navRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+
+  useNavbarAnimation(navRef);
+  useNavbarMobileAnimation(menuOpen, mobileMenuRef);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -34,7 +42,7 @@ const Navbar = () => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className={`nav ${scrolled ? "nav-scrolled" : ""}`}>
+    <nav className={`nav ${scrolled ? "nav-scrolled" : ""}`} ref={navRef}>
       <div className="nav-container">
         {/* Logo */}
         <Link to="/" className="nav-logo" onClick={closeMenu}>
@@ -58,7 +66,6 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-          {/* CTA */}
           <Link to="/destinations" className="nav-cta">
             Explore Now
           </Link>
@@ -77,7 +84,10 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`nav-mobile ${menuOpen ? "nav-mobile-open" : ""}`}>
+      <div
+        className={`nav-mobile ${menuOpen ? "nav-mobile-open" : ""}`}
+        ref={mobileMenuRef}
+      >
         <ul className="nav-mobile-links">
           {navLinks.map(({ path, label }) => (
             <li key={path}>

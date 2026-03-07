@@ -1,5 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import destinations from "../data/destinations";
+import {
+  useDestinationsPageAnimation,
+  useDestinationsPageGridAnimation,
+} from "../hooks/useDestinationsPageAnimation";
 import "./Destinationspage.scss";
 
 const ALL_TAGS = [
@@ -13,6 +17,7 @@ const ALL_TAGS = [
 ];
 
 const DestinationsPage = () => {
+  const pageRef = useRef(null);
   const [activeTag, setActiveTag] = useState("All");
 
   const filtered =
@@ -20,8 +25,11 @@ const DestinationsPage = () => {
       ? destinations
       : destinations.filter((d) => d.tags.includes(activeTag));
 
+  useDestinationsPageAnimation(pageRef);
+  useDestinationsPageGridAnimation(pageRef, filtered);
+
   return (
-    <div className="destinations-page">
+    <div className="destinations-page" ref={pageRef}>
       {/* ── Page Header ──────────────────────── */}
       <div className="destinations-page-header">
         <div className="destinations-page-header-left">
@@ -60,7 +68,7 @@ const DestinationsPage = () => {
         </span>
       </div>
 
-      {/* ── Option A: Grid (desktop) ──────────── */}
+      {/* ── Grid (desktop) ────────────────────── */}
       <div className="destinations-page-grid">
         {filtered.length > 0 ? (
           filtered.map((dest) => (
@@ -102,7 +110,7 @@ const DestinationsPage = () => {
         )}
       </div>
 
-      {/* ── Option B: Magazine List (mobile) ─── */}
+      {/* ── Magazine List (mobile) ────────────── */}
       <div className="destinations-page-list">
         {filtered.length > 0 ? (
           filtered.map((dest) => (

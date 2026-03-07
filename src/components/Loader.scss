@@ -1,0 +1,256 @@
+// ── Loader ─────────────────────────────────────
+// Full-screen split-panel loader that exits by splitting top/bottom
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: all;
+}
+
+// ── Panels ─────────────────────────────────────
+.loader-panel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #0a0908;
+  overflow: hidden;
+}
+
+.loader-panel-top {
+  top: 0;
+  border-bottom: 1px solid rgba(244, 243, 238, 0.06);
+
+  // Noise grain overlay
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}
+
+.loader-panel-bottom {
+  bottom: 0;
+}
+
+// ── Label (top-left) ───────────────────────────
+.loader-label {
+  position: absolute;
+  top: 36px;
+  left: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @media (max-width: 600px) {
+    top: 24px;
+    left: 24px;
+  }
+}
+
+.loader-label-line {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: rgba(255, 158, 0, 0.6);
+}
+
+.loader-label-text {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(244, 243, 238, 0.45);
+}
+
+// ── Vol tag (top-right) ────────────────────────
+.loader-vol {
+  position: absolute;
+  top: 32px;
+  right: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+
+  @media (max-width: 600px) {
+    top: 20px;
+    right: 24px;
+  }
+}
+
+.loader-vol-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(244, 243, 238, 0.25);
+}
+
+.loader-vol-number {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: rgba(244, 243, 238, 0.15);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+// ── Headline (center of top panel) ────────────
+.loader-headline {
+  position: absolute;
+  top: 50%;
+  left: 48px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  @media (max-width: 600px) {
+    left: 24px;
+    right: 24px;
+  }
+}
+
+.loader-headline-clip {
+  overflow: hidden;
+  // clip container so lines animate up from below
+}
+
+.loader-headline-line {
+  display: block;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #f4f3ee;
+  text-transform: uppercase;
+  font-family: "Theater", serif;
+
+  // default: invisible until GSAP animates in
+  opacity: 0;
+  transform: translateY(110%);
+}
+
+.loader-headline-line-gold {
+  color: #ff9e00;
+  font-style: italic;
+  text-transform: none;
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  font-weight: 400;
+}
+
+.loader-headline-line-muted {
+  color: rgba(244, 243, 238, 0.2);
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  font-weight: 300;
+}
+
+// ── Sub text ───────────────────────────────────
+.loader-sub {
+  position: absolute;
+  bottom: 32px;
+  left: 48px;
+  font-size: 0.78rem;
+  color: rgba(244, 243, 238, 0.3);
+  letter-spacing: 0.06em;
+  margin: 0;
+  font-style: italic;
+  opacity: 0;
+
+  @media (max-width: 600px) {
+    left: 24px;
+    bottom: 24px;
+  }
+}
+
+// ── Coords ─────────────────────────────────────
+.loader-coords {
+  position: absolute;
+  bottom: 32px;
+  right: 48px;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 158, 0, 0.4);
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+
+  @media (max-width: 600px) {
+    right: 24px;
+    bottom: 24px;
+  }
+}
+
+// ── Counter (center of bottom panel) ──────────
+.loader-counter {
+  position: absolute;
+  top: 50%;
+  left: 48px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+
+  @media (max-width: 600px) {
+    left: 24px;
+  }
+}
+
+.loader-counter-number {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 700;
+  color: rgba(244, 243, 238, 0.08);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  font-family: "Theater", serif;
+}
+
+.loader-counter-pct {
+  font-size: clamp(1.2rem, 3vw, 2.4rem);
+  font-weight: 300;
+  color: rgba(244, 243, 238, 0.06);
+}
+
+// ── Progress bar ───────────────────────────────
+.loader-progress {
+  position: absolute;
+  bottom: 32px;
+  left: 48px;
+  right: 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+  }
+}
+
+.loader-progress-track {
+  flex: 1;
+  height: 1px;
+  background: rgba(244, 243, 238, 0.08);
+  overflow: hidden;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: #ff9e00;
+  transform: scaleX(0);
+  transform-origin: left;
+  // driven by GSAP inline style updates
+}
+
+.loader-progress-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(244, 243, 238, 0.2);
+  flex-shrink: 0;
+}
