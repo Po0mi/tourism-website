@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import useFooterAnimation from "../hooks/useFooterAnimation";
+import useFooterAnimation from "../hooks/usefooteranimation";
 import "./Footer.scss";
 
 const navLinks = [
