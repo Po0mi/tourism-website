@@ -110,8 +110,8 @@ const Footer = () => {
           <h4 className="footer-col-title">Contact</h4>
           <ul className="footer-links">
             <li>
-              <a href="mailto:hello@pinasguide.ph" className="footer-link">
-                hello@pinasguide.ph
+              <a href="mailto:decastrogab21@gmail.com" className="footer-link">
+                decastrogab21@gmail.com
               </a>
             </li>
             <li>
