@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import useFooterAnimation from "../hooks/Usefooteranimation";
 import "./Footer.scss";
 
 const navLinks = [
@@ -17,11 +16,8 @@ const regions = [
 ];
 
 const Footer = () => {
-  const footerRef = useRef(null);
-  useFooterAnimation(footerRef);
-
   return (
-    <footer className="footer" ref={footerRef}>
+    <footer className="footer">
       {/* Marquee */}
       <div className="footer-marquee-wrap">
         <div className="footer-marquee">
